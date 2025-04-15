@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="extended_resource_calendar_leave_form" model="ir.ui.view">
+            <field name="name">extended_resource_calendar_leave_form</field>
+            <field name="model">resource.calendar.leaves</field>
+            <field name="inherit_id" ref="resource.resource_calendar_leave_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='calendar_id']" position="before">
+                    <field name="employee_attendance_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

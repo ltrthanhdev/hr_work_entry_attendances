@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="extended_hr_attendance_res_config_settings_view_form" model="ir.ui.view">
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="hr_attendance.res_config_settings_view_form"/>
+            <field name="name">extended_hr_attendance_res_config_settings_view_form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//block[@name='kiosk_mode_setting_container']" position="inside">
+                    <setting string="Default Work Entry Type" company_dependent="1"
+                             help="Config default Work Entry type for Attendances">
+                        <field name="attendance_work_entry_type_id"/>
+                    </setting>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

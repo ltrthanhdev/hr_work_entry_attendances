@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="work_entry_attendance_form_view" model="ir.ui.view">
+            <field name="model">hr.attendance</field>
+            <field name="name">work_entry_attendance_form_view</field>
+            <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet" position="before">
+                    <header>
+                        <button name="action_validate" type="object" string="Make Validation" icon="fa-check"
+                                class="oe_highlight" invisible="attendance_state == 'validate'"/>
+                        <field name="attendance_state" widget="statusbar"/>
+                    </header>
+                </xpath>
+                <xpath expr="//field[@name='check_in']" position="attributes">
+                    <attribute name="readonly">attendance_state == 'validate'</attribute>
+                </xpath>
+                <xpath expr="//field[@name='check_out']" position="attributes">
+                    <attribute name="readonly">attendance_state == 'validate'</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="work_entry_attendance_tree_view" model="ir.ui.view">
+            <field name="model">hr.attendance</field>
+            <field name="name">work_entry_attendance_tree_view</field>
+            <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='overtime_hours']" position="after">
+                    <field name="attendance_state" widget="badge"
+                           decoration-info="attendance_state == 'draft'"
+                           decoration-success="attendance_state == 'validate'"/>
+                </xpath>
+                <xpath expr="//tree" position="inside">
+                    <button name="action_validate" type="object" string="Make Validation" icon="fa-check"
+                            invisible="attendance_state == 'validate'"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

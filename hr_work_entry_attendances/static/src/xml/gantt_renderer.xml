@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="enmasys_work_entry_attendance.GanttRenderer.Pill" t-inherit="web_gantt.GanttRenderer.Pill"
+        t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('o_gantt_pill_wrapper')]//span[hasclass('o_gantt_pill_title')]" position="attributes">
+            <attribute name="class">text-truncate mx-1</attribute>
+        </xpath>
+    </t>
+</templates>
