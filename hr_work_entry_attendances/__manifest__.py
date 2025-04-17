@@ -32,7 +32,7 @@
     'installable': True,
     'auto_install': False,
     'application': False,
-    'price': 14.98,
+    'price': 83.86,
     'currency': 'USD',
     'post_init_hook': '_validate_existing_work_entries',
 }
