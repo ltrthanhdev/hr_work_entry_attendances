@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-14 09:43+0000\n"
-"PO-Revision-Date: 2025-04-14 09:43+0000\n"
+"POT-Creation-Date: 2025-04-17 02:53+0000\n"
+"PO-Revision-Date: 2025-04-17 02:53+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,16 @@ msgstr "%s: Chấm công"
 #: model:ir.model,name:hr_work_entry_attendances.model_hr_attendance
 msgid "Attendance"
 msgstr "Chấm công"
+
+#. module: hr_work_entry_attendances
+#: model:ir.model.fields.selection,name:hr_work_entry_attendances.selection__res_company__generate_work_entries_mode__auto
+msgid "Automatically"
+msgstr "Tự động"
+
+#. module: hr_work_entry_attendances
+#: model:ir.model.fields.selection,name:hr_work_entry_attendances.selection__hr_attendance__attendance_state__cancel
+msgid "Cancel"
+msgstr "Đã hủy"
 
 #. module: hr_work_entry_attendances
 #: model:ir.model,name:hr_work_entry_attendances.model_res_company
@@ -66,9 +76,48 @@ msgid "Employee Contract"
 msgstr "Hợp đồng nhân viên"
 
 #. module: hr_work_entry_attendances
+#: model_terms:ir.ui.view,arch_db:hr_work_entry_attendances.extended_hr_attendance_res_config_settings_view_form
+msgid "Generate Work Entries Mode"
+msgstr "Chế độ Tạo các mục công việc"
+
+#. module: hr_work_entry_attendances
+#: model:ir.model.fields,field_description:hr_work_entry_attendances.field_res_company__generate_work_entries_mode
+#: model:ir.model.fields,field_description:hr_work_entry_attendances.field_res_config_settings__generate_work_entries_mode
+msgid "Generate Work Entries mode"
+msgstr "Chế độ Tạo các mục công việc"
+
+#. module: hr_work_entry_attendances
 #: model:ir.model,name:hr_work_entry_attendances.model_hr_work_entry
 msgid "HR Work Entry"
 msgstr "Nội dung công việc HR"
+
+#. module: hr_work_entry_attendances
+#: model_terms:ir.ui.view,arch_db:hr_work_entry_attendances.work_entry_attendance_form_view
+#: model_terms:ir.ui.view,arch_db:hr_work_entry_attendances.work_entry_attendance_tree_view
+msgid "Make Cancellation"
+msgstr "Hủy"
+
+#. module: hr_work_entry_attendances
+#: model_terms:ir.ui.view,arch_db:hr_work_entry_attendances.work_entry_attendance_form_view
+#: model_terms:ir.ui.view,arch_db:hr_work_entry_attendances.work_entry_attendance_tree_view
+msgid "Make Validation"
+msgstr "Phê duyệt"
+
+#. module: hr_work_entry_attendances
+#: model:ir.model.fields.selection,name:hr_work_entry_attendances.selection__res_company__generate_work_entries_mode__manual
+msgid "Manually"
+msgstr "Thủ công"
+
+#. module: hr_work_entry_attendances
+#: model_terms:ir.ui.view,arch_db:hr_work_entry_attendances.work_entry_attendance_form_view
+#: model_terms:ir.ui.view,arch_db:hr_work_entry_attendances.work_entry_attendance_tree_view
+msgid "Mark as Draft"
+msgstr "Đánh dấu là Cần duyệt"
+
+#. module: hr_work_entry_attendances
+#: model:ir.model,name:hr_work_entry_attendances.model_hr_work_entry_regeneration_wizard
+msgid "Regenerate Employee Work Entries"
+msgstr "Tạo lại mục công việc nhân viên"
 
 #. module: hr_work_entry_attendances
 #: model:ir.model.fields,field_description:hr_work_entry_attendances.field_hr_attendance__resource_calendar_id
@@ -96,15 +145,18 @@ msgid "To confirm"
 msgstr "Chờ duyệt"
 
 #. module: hr_work_entry_attendances
+#: model_terms:ir.ui.view,arch_db:hr_work_entry_attendances.extended_hr_attendance_res_config_settings_view_form
+msgid ""
+"Toggle On/Off to generate Work Entries manually/automatically. If True, only"
+" generate Work Entries after validating Attendances."
+msgstr ""
+"Chọn chế độ tạo các mục công việc (Thủ công/Tự động). Ở chế độ Thủ công, chỉ"
+" tạo Các mục công việc sau khi phê duyệt chấm công."
+
+#. module: hr_work_entry_attendances
 #: model:ir.model.fields.selection,name:hr_work_entry_attendances.selection__hr_attendance__attendance_state__validate
 msgid "Validate"
 msgstr "Đã phê duyệt"
-
-#. module: hr_work_entry_attendances
-#: model_terms:ir.ui.view,arch_db:hr_work_entry_attendances.work_entry_attendance_form_view
-#: model_terms:ir.ui.view,arch_db:hr_work_entry_attendances.work_entry_attendance_tree_view
-msgid "Make Validation"
-msgstr "Phê duyệt"
 
 #. module: hr_work_entry_attendances
 #: model:ir.model.fields,help:hr_work_entry_attendances.field_resource_calendar_leaves__time_type

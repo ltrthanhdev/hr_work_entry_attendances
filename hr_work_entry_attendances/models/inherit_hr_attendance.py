@@ -3,7 +3,7 @@ from odoo import models, fields, api, _
 
 class InheritHrAttendance(models.Model):
     _inherit = "hr.attendance"
-    ATTENDANCE_STATUSES = [('draft', "To confirm"), ('validate', "Validate")]
+    ATTENDANCE_STATUSES = [('draft', "To confirm"), ('validate', "Validate"), ('cancel', "Cancel")]
 
     attendance_state = fields.Selection(selection=ATTENDANCE_STATUSES, string="State", tracking=True, default='draft')
     resource_calendar_id = fields.Many2one(
@@ -14,6 +14,10 @@ class InheritHrAttendance(models.Model):
     def _compute_resource_calendar_id(self):
         for attendance in self:
             calendar = attendance.employee_id.resource_calendar_id
+            range_stop = attendance.check_out
+            if not range_stop:
+                attendance.resource_calendar_id = False
+                continue
             if 'hr.attendance' in self.env and attendance.employee_id:
                 contracts = self.env['hr.contract'].search([
                     '|', ('state', 'in', ['open', 'close']),
@@ -48,11 +52,7 @@ class InheritHrAttendance(models.Model):
         for attendance in self:
             contracts = attendance.employee_id.sudo()._get_contracts(
                 date_from=attendance.check_in.date(), date_to=attendance.check_out.date(), states=['open', 'close'])
-            for contract in contracts:
-                # Generate only if it has already been generated
-                if bool(attendance.check_out >= contract.date_generated_from and
-                        attendance.check_in <= contract.date_generated_to):
-                    attendance_work_entries_vals += contracts._get_work_entries_values(
+            attendance_work_entries_vals += contracts._get_work_entries_values(
                         date_start=attendance.check_in, date_stop=attendance.check_out)
         new_attendance_work_entries = self.env['hr.work.entry'].create(attendance_work_entries_vals)
         if new_attendance_work_entries:
@@ -109,6 +109,30 @@ class InheritHrAttendance(models.Model):
             'work_entry_type_id': self.employee_id.company_id.attendance_work_entry_type_id.id
         }
 
+    def remove_related_resource_leaves(self):
+        resource_leaves = self.env['resource.calendar.leaves']
+        resource_leaves.search(domain=[
+            ('employee_attendance_id', 'in', self.ids), ('time_type', '=', 'employee_attendance')]).unlink()
+        return resource_leaves
+
+    def remove_related_work_entries(self):
+        work_entries = self.env['hr.work.entry']
+        work_entries.search(domain=[('employee_attendance_id', 'in', self.ids)]).unlink()
+        return work_entries
+
+    def action_cancel(self):
+        """ make Attendances cancelled -> unlink <resource.calendar.leaves> """
+        # 1. unlink <resource.calendar.leaves>
+        self.remove_related_resource_leaves()
+        # 2. remove related Work Entries
+        self.remove_related_work_entries()
+        # 3. Update state to 'cancel'
+        self.attendance_state = 'cancel'
+
+    def action_draft(self):
+        """ update state to 'draft' """
+        self.attendance_state = 'draft'
+
     @api.model
     def create(self, vals):
         new_attendance = super(InheritHrAttendance, self).create(vals)
@@ -119,3 +143,8 @@ class InheritHrAttendance(models.Model):
         res = super(InheritHrAttendance, self).write(changes)
 
         return res
+
+    def unlink(self):
+        self.remove_related_resource_leaves()
+        self.remove_related_work_entries()
+        return super(InheritHrAttendance, self).unlink()

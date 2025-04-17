@@ -9,8 +9,12 @@
                 <xpath expr="//form/sheet" position="before">
                     <header>
                         <button name="action_validate" type="object" string="Make Validation" icon="fa-check"
-                                class="oe_highlight" invisible="attendance_state == 'validate'"/>
-                        <field name="attendance_state" widget="statusbar"/>
+                                class="oe_highlight" invisible="attendance_state != 'draft' or not check_out"/>
+                        <button name="action_cancel" type="object" string="Make Cancellation" icon="fa-times"
+                                invisible="attendance_state == 'cancel'"/>
+                        <button name="action_draft" type="object" string="Mark as Draft" icon="fa-file-o"
+                                invisible="attendance_state != 'cancel'"/>
+                        <field name="attendance_state" widget="statusbar" statusbar_visible="draft,validate"/>
                     </header>
                 </xpath>
                 <xpath expr="//field[@name='check_in']" position="attributes">
@@ -34,7 +38,11 @@
                 </xpath>
                 <xpath expr="//tree" position="inside">
                     <button name="action_validate" type="object" string="Make Validation" icon="fa-check"
-                            invisible="attendance_state == 'validate'"/>
+                            class="oe_highlight" invisible="attendance_state != 'draft' or not check_out"/>
+                    <button name="action_cancel" type="object" string="Make Cancellation" icon="fa-times"
+                            invisible="attendance_state == 'cancel'"/>
+                    <button name="action_draft" type="object" string="Mark as Draft" icon="fa-file-o"
+                            invisible="attendance_state != 'cancel'"/>
                 </xpath>
             </field>
         </record>
