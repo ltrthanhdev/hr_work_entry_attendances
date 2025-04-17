@@ -1,6 +1,6 @@
 {
     'name': 'Addons: Attendances to Work Entries',
-    'version': '17.0.0.0.0',
+    'version': '17.0.0.0.1',
     'category': 'Human Resources',
     'summary': """ Making Attendances to Work Entries """,
     'description': 'This module will make Work Entries while employee check-in/check-out',
@@ -27,11 +27,12 @@
             'hr_work_entry_attendances/static/src/xml/gantt_renderer.xml'
         ],
     },
-    'images': ['static/description/banner.jpg'],
+    'images': [],
     'license': 'LGPL-3',
     'installable': True,
     'auto_install': False,
     'application': False,
     'price': 14.98,
     'currency': 'USD',
+    'post_init_hook': '_validate_existing_work_entries',
 }

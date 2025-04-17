@@ -19,3 +19,10 @@ class InheritHrContract(models.Model):
             [('employee_attendance_id.employee_id', 'in', self.employee_id.ids),
              ('time_type', '=', 'employee_attendance')]
         ])
+
+    def generate_work_entries(self, date_start, date_stop, force=False):
+        if self.env.context.get('force_regenerate'):
+            return super(InheritHrContract, self).generate_work_entries(date_start, date_stop, force)
+        return super(InheritHrContract, self.filtered(
+            func=lambda hc: hc.employee_id.company_id.generate_work_entries_mode == 'auto'
+        )).generate_work_entries(date_start, date_stop, force)
