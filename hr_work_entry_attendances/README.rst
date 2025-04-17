@@ -16,14 +16,11 @@ Addons - Attendances to Work Entries
 .. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
-.. |badge3| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/web-17-0/web-17-0-web_widget_image_download
-    :alt: Translate me on Weblate
-.. |badge4| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/web&target_branch=17.0
-    :alt: Try me on Runboat
+.. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fweb-lightgray.png?logo=github
+    :target: https://github.com/OCA/web/tree/17.0/web_widget_image_download
+    :alt: OCA/web
 
-|badge1| |badge2| |badge3| |badge4|
+|badge1| |badge2| |badge3|
 
 This module was written to make synchronization between Attendances and Work Entries.
 
@@ -32,30 +29,27 @@ This module was written to make synchronization between Attendances and Work Ent
 .. contents::
    :local:
 
+Languages
+=========
+
+* English (en_US)
+* Vietnamese (vi_VN)
+
 Usage
 =====
 
 To use this module, an example path is:
 
-1.  Go to the General Settings.
+1.  Go to the `General Settings`.
 2.  Click on Attendances (on the left side).
-3.  Config Default Work Entry Type (at block Modes).
-4.  Save changes.
-5.  Check-in/Check-out.
-6.  Make Attendance validate, Work Entries will be generated.
-
-Bug Tracker
-===========
-
-Bugs are tracked on `GitHub Issues <https://github.com/ltrthanhdev/hr_work_entry_attendances/issues>`_.
-In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/ltrthanhdev/hr_work_entry_attendances/issues/new>`_.
-
-Do not contact contributors directly about support or help with technical issues.
+3.  Select `Generate Work Entries mode` (at block Modes).
+4.  Select `Default Work Entry Type` (at block Modes).
+5.  Save changes.
+6.  Check-in/Check-out.
+7.  Make Attendance validate, Work Entries will be generated.
 
 Credits
-=======
+==========
 
 Developers
 -------
