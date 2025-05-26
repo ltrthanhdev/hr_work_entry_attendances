@@ -9,7 +9,7 @@
                 <xpath expr="//block[@name='kiosk_mode_setting_container']" position="inside">
                     <setting string="Generate Work Entries Mode" company_dependent="1"
                              help="Toggle On/Off to generate Work Entries manually/automatically. If True, only generate Work Entries after validating Attendances.">
-                        <field name="generate_work_entries_mode"/>
+                        <field name="generate_work_entries_mode" required="1"/>
                     </setting>
                     <setting string="Default Work Entry Type" company_dependent="1"
                              help="Config default Work Entry type for Attendances">
