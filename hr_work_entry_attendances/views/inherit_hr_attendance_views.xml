@@ -6,10 +6,13 @@
             <field name="name">work_entry_attendance_form_view</field>
             <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//field[@name='worked_hours']" position="after">
+                    <field name="to_confirm" invisible="1"/>
+                </xpath>
                 <xpath expr="//form/sheet" position="before">
                     <header>
                         <button name="action_validate" type="object" string="Make Validation" icon="fa-check"
-                                class="oe_highlight" invisible="attendance_state != 'draft' or not check_out"/>
+                                class="oe_highlight" invisible="attendance_state != 'draft' or not to_confirm"/>
                         <button name="action_cancel" type="object" string="Make Cancellation" icon="fa-times"
                                 invisible="attendance_state == 'cancel'"/>
                         <button name="action_draft" type="object" string="Mark as Draft" icon="fa-file-o"
@@ -23,6 +26,9 @@
                 <xpath expr="//field[@name='check_out']" position="attributes">
                     <attribute name="readonly">attendance_state == 'validate'</attribute>
                 </xpath>
+                <xpath expr="//field[@name='message_ids']" position="before">
+                    <field name="activity_ids"/>
+                </xpath>
             </field>
         </record>
 
@@ -35,6 +41,7 @@
                     <field name="attendance_state" widget="badge"
                            decoration-info="attendance_state == 'draft'"
                            decoration-success="attendance_state == 'validate'"/>
+                    <field name="to_confirm"/>
                 </xpath>
                 <xpath expr="//tree" position="inside">
                     <button name="action_validate" type="object" string="Make Validation" icon="fa-check"

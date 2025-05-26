@@ -4,13 +4,14 @@
     'category': 'Human Resources',
     'summary': """ Making Attendances to Work Entries """,
     'description': 'This module will make Work Entries while employee check-in/check-out',
-    'author': 'L.Tr.Thanh',
-    'maintainer': 'L.Tr.Thanh',
-    'depends': ['base', 'hr_attendance', 'mail', 'hr_work_entry_contract'],
+    'author': 'bundaumamtom-bunthem',
+    'maintainer': 'bundaumamtom-bunthem',
+    'depends': ['base', 'hr_attendance', 'mail', 'hr_work_entry_holidays'],
     'data': [
         # security
 
         # data
+        'data/mail_activity_type_datas.xml',
 
         # demo
 
@@ -27,12 +28,10 @@
             'hr_work_entry_attendances/static/src/xml/gantt_renderer.xml'
         ],
     },
-    'images': ['static/description/banner.jpg'],
+    'images': [],
     'license': 'LGPL-3',
     'installable': True,
     'auto_install': False,
     'application': False,
-    'price': 83.86,
-    'currency': 'USD',
     'post_init_hook': '_validate_existing_work_entries',
 }
